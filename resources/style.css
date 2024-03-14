@@ -1,0 +1,531 @@
+/* general styles ===========================================================================*/
+
+* {
+  box-sizing: border-box;
+}
+
+.construction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00603b;
+  text-align: center;
+}
+
+.construction h1 {
+  color: white;
+  font-size: 64px;
+}
+
+body {
+  width: 430px; /* customised for iPhone 14 */
+  margin: 0 auto;
+  font-family: "Figtree", sans-serif;
+  position: relative;
+}
+
+p {
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.align-right {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 90px;
+  margin-bottom: 100px;
+  padding: 0 20px;
+}
+
+/* used in details page */
+
+.narrow-container {
+  width: 90%;
+  padding: 0 20px;
+  margin: 0 auto 100px auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.space-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.space-evenly {
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.column {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.accent {
+  background-color: #ebe5e0;
+  justify-content: center;
+}
+
+.border-top {
+  border-top: 2px solid #73b959;
+  width: 80%;
+  margin: 40px auto 0 auto;
+}
+
+.one-third {
+  width: 66%;
+  margin-top: 20px;
+}
+
+.narrow-margin {
+  margin-block-start: 5px;
+}
+
+.btn {
+  background-color: white;
+  border: 2px solid black;
+}
+
+.btn,
+.btn-select {
+  border-radius: 45px;
+  width: 120px;
+  padding: 10px;
+  margin: 10px;
+  transition: all 0.5s linear;
+}
+
+.btn-select {
+  border: none;
+}
+
+.btn-edit {
+  width: 80px;
+  padding: 5px;
+}
+
+.btn-action {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+}
+
+.btn a,
+.btn-select a {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.btn a {
+  color: black;
+}
+
+.btn-select a {
+  color: white;
+}
+
+.btn:hover,
+.btn-select:hover {
+  background-color: #ebe5e0;
+  font-style: italic;
+}
+
+#history-btn,
+#login-btn,
+#signup-btn {
+  text-transform: uppercase;
+
+  color: black;
+}
+
+.card {
+  margin: 20px 0;
+  border-radius: 8px;
+  padding: 10px 20px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+/* header styles ======================================================================= */
+
+header {
+  width: 430px;
+  background-color: #ebe5e0;
+  padding: 20px 20px 10px 20px;
+  position: fixed;
+  top: 0;
+}
+
+header p {
+  font-family: "Figtree", sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-left: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.left {
+  width: 80%;
+}
+
+.logo {
+  width: 50px;
+  padding-left: 15px;
+}
+
+/* user login, signup, logout styles ==================================================*/
+
+.user-form {
+  margin: 10px;
+}
+
+.flex-form label {
+  display: block;
+  padding: 5px 0;
+}
+
+/* home page styles =============================================================== */
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+  border-radius: 8px;
+  width: 80%;
+  height: 200px;
+  padding: 20px;
+  text-align: center;
+}
+
+.box h2 {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 5px;
+  color: white;
+}
+
+.image-link {
+  color: white;
+  text-decoration: none;
+}
+
+.image-link:hover {
+  font-style: italic;
+}
+
+#box-1 {
+  background-image: url("../assets/KTH_Innovation_2023-73.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+#box-2 {
+  background-image: url("../assets/UserGuide.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* displaying the round image of scales and text around */
+
+.grid {
+  display: grid;
+
+  grid-template-areas:
+    ".    .    cust .    ."
+    "fund .    .    .    tech"
+    ".    .    kthi .    ."
+    "team .    .    .    busi"
+    ".    .    iprl .    .";
+
+  grid-template-rows: repeat(5, 70px);
+  grid-template-columns: repeat(5, 1fr);
+  margin: 0 auto;
+  background-image: url("../assets/spider_light_segments.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.grid-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 110px;
+}
+
+.grid-row p {
+  font-size: 14px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* align text on top half of circle*/
+
+#cust,
+#fund,
+#tech {
+  display: flex;
+  align-items: flex-end;
+}
+
+/* align text on bottom half of circle */
+
+#team,
+#busi,
+#iprl {
+  display: flex;
+  align-items: flex-start;
+}
+
+#cust {
+  grid-area: cust;
+}
+
+#fund {
+  grid-area: fund;
+}
+
+#tech {
+  grid-area: tech;
+}
+
+#kthi {
+  grid-area: kthi;
+}
+
+#team {
+  grid-area: team;
+}
+
+#busi {
+  grid-area: busi;
+}
+
+#iprl {
+  grid-area: iprl;
+}
+
+/* animating the text of the scales image */
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.text-background {
+  animation: drop-in 2s ease 500ms backwards;
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0px);
+  }
+}
+
+/* dashboard page styles =============================================================== */
+
+.scales-list {
+  display: flex;
+}
+
+.scales-list div {
+  width: 140px;
+  height: 20px;
+  text-align: center;
+  font-size: 12px;
+  padding-top: 2px;
+  border-radius: 5px;
+}
+
+.scales-title {
+  max-width: 50%;
+}
+
+/* edit scales page ====================================================================== */
+
+#btn_1 {
+  background-color: #ae0f0b;
+  border: 2px solid #ae0f0b;
+}
+
+#btn_2 {
+  background-color: #e63312;
+  border: 2px solid #e63312;
+}
+
+#btn_3 {
+  background-color: #ec6607;
+  border: 2px solid #ec6607;
+}
+
+#btn_4 {
+  background-color: #f7b101;
+  border: 2px solid #f7b101;
+}
+
+#btn_5 {
+  background-color: #ffcc00;
+  border: 2px solid #ffcc00;
+}
+
+#btn_6 {
+  background-color: #aecb54;
+  border: 2px solid #aecb54;
+}
+
+#btn_7 {
+  background-color: #73b959;
+  border: 2px solid #73b959;
+}
+
+#btn_8 {
+  background-color: #008f51;
+  border: 2px solid #008f51;
+}
+
+#btn_9 {
+  background-color: #00603b;
+  border: 2px solid #00603b;
+}
+
+/* action page styles ================================================================ */
+
+.goal-form {
+  border: 1px solid green;
+}
+
+.goal-form p {
+  font-size: 0.6rem;
+}
+
+.goal-card {
+  background-color:#aecb54;
+  padding: 3px;
+  margin-bottom: 10px;
+}
+
+.goal-card h5 {
+  margin: 5px;
+}
+
+/* footer styles ===================================================================== */
+
+footer {
+  width: 430px;
+  background-color: #ebe5e0;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+}
+
+.icon {
+  width: 20px;
+}
+
+footer ul {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-left: 0;
+}
+
+footer ul li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style-type: none;
+  margin-left: 10px;
+}
+
+footer ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+footer ul li p {
+  font-size: 0.6rem;
+}
+
+#home,
+#dash,
+#user,
+#act,
+#track {
+  padding: 5px;
+  border-radius: 3px;
+}
+
+#home {
+  background-color: #e63312;
+}
+
+#dash {
+  background-color:#ec6607;
+}
+
+#act {
+  background-color:#f7b101;
+}
+
+#track {
+  background-color: #aecb54;
+}
+
+#user {
+  background-color: #008f51;
+}
+
+/* media queries ============================================*/
+
+@media only screen and (min-width: 700px) {
+  body,
+  header,
+  footer {
+    width: 100%;
+  }
+
+  .box {
+    width: 30%;
+  }
+}
+
+@media only screen and (min-width: 900px) {
+  body,
+  header,
+  footer {
+    max-width: 1200px;
+  }
+
+  .card {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  .box {
+    width: 60%;
+  }
+}
