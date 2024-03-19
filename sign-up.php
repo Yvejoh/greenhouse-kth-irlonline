@@ -10,8 +10,8 @@ include "./includes/header.php";
             <input type='text' name='username' value='' required/>
         </div>
         <div class="flex-form">
-            <label for="">Password: </label>
-            <input type='text' name='password' value='' required/>
+            <label for="Password">Password: </label>
+            <input type='password' name='password' value='' required/>
         </div>
         <button class="btn" id="signup-btn" type='submit'>SIGN ME UP!</button>
     </form>
