@@ -27,8 +27,8 @@ if ($_SESSION['loggedin'] == true ) { ?>
                 <input type="text" name="user" required>
             </div>
             <div class="flex-form">
-                <label for="password">Password:</label>
-                <input type="text" name="password" required>
+                <label for="Password">Password:</label>
+                <input type="password" name="password" required>
             </div>
             <div>
                 <button class="btn" id="login-btn" type="submit" value="Log in">SIGN ME IN!</button>
