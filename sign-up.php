@@ -13,6 +13,15 @@ include "./includes/header.php";
             <label for="Password">Password: </label>
             <input type='password' name='password' value='' required/>
         </div>
+        <?php 
+        session_start();
+        if(isset($_SESSION['checkPassword'])){
+            $msg = $_SESSION['checkPassword']; 
+            echo '<div>'; echo $msg; echo '</div>';
+        }
+        //session_reset();
+        session_destroy();
+        ?>
         <button class="btn" id="signup-btn" type='submit'>SIGN ME UP!</button>
     </form>
 </div>
