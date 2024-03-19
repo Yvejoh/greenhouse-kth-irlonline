@@ -30,6 +30,7 @@ if ($_SESSION['loggedin'] == true ) { ?>
                 <label for="Password">Password:</label>
                 <input type="password" name="password" required>
             </div>
+            <a href="forgot-pass.php">Forgot Password?</a>
             <div>
                 <button class="btn" id="login-btn" type="submit" value="Log in">SIGN ME IN!</button>
             </div>
