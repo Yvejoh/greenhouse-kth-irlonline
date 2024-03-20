@@ -6,7 +6,7 @@ require_once ("dbconnect_user.php");
 <!-- save user input in variables -->
 <?php
 
-function checkPassword($pwd, &$errors) {
+function checkPasswordEmail($pwd, $email,  &$errors) {
     $errors_init = $errors;
 
     if (strlen($pwd) < 4) {
@@ -19,7 +19,11 @@ function checkPassword($pwd, &$errors) {
 
     if (!preg_match("#[a-zA-Z]+#", $pwd)) {
         $errors[] = "Password must include at least one letter!";
-    }     
+    }   
+      
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format";
+    }
 
     return ($errors == $errors_init);
 }
@@ -28,7 +32,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $errors = [];
 session_start();
-if(!checkPassword($password, $errors)){
+if(!checkPasswordEmail($password,$username, $errors)){
     $msg = '';
     foreach($errors as &$value){
         $msg = $msg . ' ' . $value;
