@@ -13,7 +13,7 @@ include "./includes/header.php";
             <label for="Password">Password: </label>
             <input type='password' name='password' value='' required/>
         </div>
-        <button class="btn" id="signup-btn" type='submit'>SIGN ME UP!</button>
+        <button type='submit'>SIGN ME UP!</button>
     </form>
 </div>
 <div>
