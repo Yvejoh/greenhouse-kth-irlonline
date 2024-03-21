@@ -27,7 +27,7 @@ require_once ("dbconnect_user.php");
         header("location: forgot-pass.php");
     } else{
         
-        $password = password_hash($password, PASSWORD_BCRYPT);
+        $newpassword = password_hash($newpassword, PASSWORD_BCRYPT);
 
         $result = $conn->query("SELECT psswrd FROM IRLusers WHERE username='$username'");
 
