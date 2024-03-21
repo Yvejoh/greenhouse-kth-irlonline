@@ -9,8 +9,13 @@ require_once ("dbconnect_user.php");
 function checkPasswordEmail($pwd, $email,  &$errors) {
     $errors_init = $errors;
 
-    if (strlen($pwd) < 4) {
-        $errors[] = "Password too short!";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format!";
+        return ($errors == $errors_init);
+    }
+
+    if (strlen($pwd) < 6) {
+        $errors[] = "Password must be at least 6 characters long!";
     }
 
     if (!preg_match("#[0-9]+#", $pwd)) {
@@ -20,10 +25,6 @@ function checkPasswordEmail($pwd, $email,  &$errors) {
     if (!preg_match("#[a-zA-Z]+#", $pwd)) {
         $errors[] = "Password must include at least one letter!";
     }   
-      
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Invalid email format";
-    }
 
     return ($errors == $errors_init);
 }

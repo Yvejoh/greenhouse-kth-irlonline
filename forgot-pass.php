@@ -22,9 +22,8 @@ include "./includes/header.php";
             if(isset($_SESSION['checkPassword'])){
                 $msg = $_SESSION['checkPassword']; 
                 echo '<div>'; echo $msg; echo '</div>';
+                unset($_SESSION['checkPassword']);
             }
-            //session_reset();
-            session_destroy();
         ?>
         <button class="btn" id="signup-btn" type='submit'>CHANGE PASSWORD</button>
     </form>
