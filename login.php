@@ -31,6 +31,10 @@ if ($_SESSION['loggedin'] == true ) { ?>
                 $msg = $_SESSION['accountcreated']; 
                 echo '<div>'; echo $msg; echo '</div>';
                 unset($_SESSION['accountcreated']);
+            } else if(isset($_SESSION['loginfailed'])){
+                $msg = $_SESSION['loginfailed']; 
+                echo '<div>'; echo $msg; echo '</div>';
+                unset($_SESSION['loginfailed']);
             }
         ?>
         <h3>Log in to your account:</h3>
