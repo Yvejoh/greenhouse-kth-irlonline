@@ -3,7 +3,7 @@ include "./includes/header.php";
 ?>
 <div class="main-container">
 <div class="card">
-    <h3>Register for an account:</h3>
+    <h3>Change Password</h3>
     <form class="user-form" action='change-password.php' method='post'>
         <div class="flex-form">
             <label for="">E-mail: </label>

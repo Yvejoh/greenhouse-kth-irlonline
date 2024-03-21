@@ -4,7 +4,23 @@ require_once ("dbconnect_user.php");
 ?>
 
 <?php
-    require_once ("create_user.php");
+
+    function checkPasswordEmail($pwd,  &$errors) {
+        $errors_init = $errors;
+        if (strlen($pwd) < 6) {
+            $errors[] = "Password must be at least 6 characters long!";
+        }
+
+        if (!preg_match("#[0-9]+#", $pwd)) {
+            $errors[] = "Password must include at least one number!";
+        }
+
+        if (!preg_match("#[a-zA-Z]+#", $pwd)) {
+            $errors[] = "Password must include at least one letter!";
+        }   
+
+        return ($errors == $errors_init);
+    }
     $username = $_POST['username'];
     //$password = $_POST['password'];
     $newpassword = $_POST['newpassword'];
@@ -17,7 +33,7 @@ require_once ("dbconnect_user.php");
     }
 
     $errors = [];
-    if(!checkPasswordEmail($newpassword,$username, $errors)){
+    if(!checkPasswordEmail($newpassword, $errors)){
         $msg = '';
         foreach($errors as &$value){
             $msg = $msg . ' ' . $value;
