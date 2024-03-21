@@ -1,10 +1,15 @@
-<!-- connect to database -->
 <?php
-require_once ("dbconnect_user.php");
-?>
 
-<!-- save user input in variables -->
-<?php
+require_once("users/repository.php");
+
+$repo = UserRepository::get();
+$username = $_POST['username'];
+
+if ($repo->findByUsername($username)) {
+    echo "Already exists!";
+    $_SESSION['checkPassword'] "User already exists!";
+    header("location: login.php")
+}
 
 function checkPasswordEmail($pwd, $email,  &$errors) {
     $errors_init = $errors;
@@ -29,7 +34,6 @@ function checkPasswordEmail($pwd, $email,  &$errors) {
     return ($errors == $errors_init);
 }
 
-$username = $_POST['username'];
 $password = $_POST['password'];
 $errors = [];
 session_start();
@@ -44,10 +48,11 @@ if(!checkPasswordEmail($password,$username, $errors)){
 } else {
     $password = password_hash($password, PASSWORD_BCRYPT);
     // insert user input into database as new user
-    $sql = "INSERT INTO IRLusers (username, psswrd)
-    VALUES ('$username', '$password')";
-
-    if ($conn->query($sql) === TRUE) {
+    if (!$repo->create($username, $password)) {
+      echo "Failed to create user!";
+      $_SESSION['checkPassword'] "Failed to create user!";
+      header("location: login.php")
+    } else {
         echo "New record created successfully";
         $_SESSION['accountcreated'] = "Account created successfully!";
         header("location: login.php");
