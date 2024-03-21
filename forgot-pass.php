@@ -17,6 +17,14 @@ include "./includes/header.php";
             <label for="">Repeat New Password: </label>
             <input type='password' name='confirmnewpassword' value='' required/>
         </div>
+        <?php 
+            session_start();
+            if(isset($_SESSION['checkPassword'])){
+                $msg = $_SESSION['checkPassword']; 
+                echo '<div>'; echo $msg; echo '</div>';
+                unset($_SESSION['checkPassword']);
+            }
+        ?>
         <button class="btn" id="signup-btn" type='submit'>CHANGE PASSWORD</button>
     </form>
 </div>
