@@ -49,6 +49,7 @@ if(!checkPasswordEmail($password,$username, $errors)){
 
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
+        $_SESSION['accountcreated'] = "Account created successfully!";
         header("location: login.php");
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
