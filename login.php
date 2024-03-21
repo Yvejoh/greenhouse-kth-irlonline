@@ -20,6 +20,23 @@ if ($_SESSION['loggedin'] == true ) { ?>
     </div>
 <?php } else { ?> 
 <div class="card">
+        <?php                     
+            session_start();
+            if(isset($_SESSION['passwordchanged'])){
+                $msg = $_SESSION['passwordchanged']; 
+                echo '<div>'; echo $msg; echo '</div>';
+                unset($_SESSION['passwordchanged']);
+            } 
+            else if(isset($_SESSION['accountcreated'])){
+                $msg = $_SESSION['accountcreated']; 
+                echo '<div>'; echo $msg; echo '</div>';
+                unset($_SESSION['accountcreated']);
+            } else if(isset($_SESSION['loginfailed'])){
+                $msg = $_SESSION['loginfailed']; 
+                echo '<div>'; echo $msg; echo '</div>';
+                unset($_SESSION['loginfailed']);
+            }
+        ?>
         <h3>Log in to your account:</h3>
         <form class="user-form" action="admin.php" method="post">
             <div class="flex-form">
