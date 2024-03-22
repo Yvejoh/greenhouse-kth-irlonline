@@ -1,12 +1,12 @@
 <?php 
 
 class UserModel {
-    public static $ID = 'id';
-    public static $USERNAME = 'username';
-    public static $PASSWORD = 'psswrd';
+    const ID = "ID";
+    const USERNAME = "EMAIL";
+    const PASSWORD = 'PASSWORD';
 
     public static function Table() {
-        return "IRLusers";
+        return "USERS";
     }
 }
 
