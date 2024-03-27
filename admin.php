@@ -1,5 +1,5 @@
 <?php
-// include("includes/header.php");
+include("includes/header.php");
 require_once("users/service.php");
 
 // save username and password in variables
@@ -10,15 +10,13 @@ $service = UserService::get();
 $user = $service->findByUsername($myusername);
 
 if ($user == NULL) {
-    echo "Invalid username";
-    return;
+  $_SESSION['loginfailed'] = "Invalid e-mail!";
+  header("location: login.php");
 }
 
-
-if (!$service->isValidPassword($user->id(), $mypassword)) {
-    echo "Invalid username or password";
-    echo "<a href='login.php'>Try again</a>";
-    return;
+if (!$service-> isUserPassword($user->id(), $mypassword)) {
+  $_SESSION['loginfailed'] = "Invalid password!";
+  header("location: login.php");
 }
 
 $login = true;

@@ -38,6 +38,10 @@ p {
 }
 
 .main-container {
+  display: grid;
+  place-items: center;
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -196,6 +200,8 @@ header p {
 
 .user-form {
   margin: 10px;
+  width: 50%;
+  float:none;
 }
 
 .flex-form label {

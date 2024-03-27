@@ -1,20 +1,26 @@
 <?php
 require_once ("users/service.php");
 
-$username = $_POST['username'];
 $newpassword = $_POST['newpassword'];
 $confirmnewpassword = $_POST['confirmnewpassword'];
-$password = password_hash($password, PASSWORD_BCRYPT);
-
 if($newpassword != $confirmnewpassword) {
-    echo "Password and confirmation do not match";
-    return;
+    $_SESSION['checkPassword'] = "Passwords doesn't match.";
+    header("location: forgot-pass.php");    
 }
 
-if (!UserService::get()->updatePassword($username, $password)) {
-    echo "Error updating password";
-    return;
+$username = $_POST['username'];
+$password = password_hash($newpassword, PASSWORD_BCRYPT);
+
+try {
+
+    session_start();
+    UserService::get()->updatePassword($username, $password);
+    $_SESSION['passwordchanged'] = "Password changed successfully"; 
+    header("location: login.php");
+    
+} catch (UnknownUserException $e) {
+    $_SESSION['checkPassword'] = $e->getMessage();
+    header("location: forgot-pass.php");
 }
 
-echo "Password changed successfully";
-header("location: login.php");
+?>
