@@ -11,7 +11,7 @@ include("includes/header.php");
 <div class="main-container">
 <?php
 
-if ($_SESSION['loggedin'] == true ) { ?>
+if (isset($_SESSION['userId']) ) { ?>
     <div class="card">
         <h3>You are currently logged in to your account.</h3>
         <h3>Would you like to log out?</h3>

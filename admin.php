@@ -22,7 +22,7 @@ if (!$service-> isUserPassword($user->id(), $mypassword)) {
 $login = true;
 session_start();
 // sets two session variables, one for login and one for current username (not sure I'm using that at the moment)
-$_SESSION['loggedin'] = true;
+$_SESSION['userId'] = $user->id();
 $_SESSION['current_user'] = $myusername;
 //send on to dashboard
 header("location: dashboard.php");

@@ -17,7 +17,7 @@ $result = $conn->query($sql);
 <?php
 session_start();
 //checking to see if user session variable loggedin is true and that a user is logged in
-if ($_SESSION['loggedin'] == true ) { ?>
+if (isset($_SESSION['userId'])) { ?>
     <body>
         <!-- scales in divs stacked -->   
         <div class="main-container">

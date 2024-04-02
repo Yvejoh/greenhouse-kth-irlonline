@@ -1,27 +1,12 @@
 <?php
 include "includes/header.php";
-?>
 
-<!-- include in session -->
-<?php
 session_start();
-?>
 
+if (!isset($_SESSION['userId'])) { 
+    header("location: login.php");
+}
 
-<!-- connect to database --> 
-<?php
-require("dbconnect.php");
-
-// bring in the correct id
-$id = $_REQUEST['id'];
-
-// checking that the correct id is brought in 
-function console_log($data) {
-    $consoleOutput = '<script>' . 'console.log(' . json_encode($data, JSON_HEX_TAG) .');'. '</script>';
-      echo $consoleOutput;
-  }
-
-  console_log($id);
 
 // query database 
 $sql = "SELECT * FROM IRLscales WHERE id=$id" ;

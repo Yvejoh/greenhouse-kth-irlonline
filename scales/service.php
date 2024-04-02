@@ -17,8 +17,12 @@ class ScaleService {
         return self::$instance;
     }
 
-    public function findAllIds() {
-        $ids = $this->repository->findAllIds();
+    public function getAll() {
+        return $this->repository->getAll();
+    }
+
+    public function getIds() {
+        $ids = $this->repository->getIds();
         if (empty($ids)) {
             die("Error: no preset scales for the user");
         }

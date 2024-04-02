@@ -1,9 +1,9 @@
 <?php
 
-require_once 'user-scales/repository.php';
-require_once 'sql/db.php';
-require_once 'model.php';
-require_once 'user.php';
+require_once("user-scales/repository.php");
+require_once("sql/db.php");
+require_once("model.php");
+require_once("user.php");
 
 class UserRepository {
     private static $instance;

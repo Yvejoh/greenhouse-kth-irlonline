@@ -27,7 +27,7 @@ class UserService {
             throw new UnavailableUsernameException("Username already exists");
         }
 
-        $scaleIds = $this->scaleService->findAllIds();
+        $scaleIds = $this->scaleService->getIds();
         return $this->repository->create($username,$password, $scaleIds);
     }
 

@@ -16,6 +16,10 @@ class UserScaleService {
         }
         return self::$instance;
     }
+
+    public function getUserScales($userID) {
+        return $this->repository->getUserScales($userID);
+    }
 }
 
 
