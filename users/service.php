@@ -35,6 +35,7 @@ class UserService {
         if ($user == NULL || !password_verify($password, $user->password())) {
             throw new InvalidCredentialsException("Invalid unsername or password!");
         }
+        return $user;
     }
 
     public function updatePassword($username,$password) {

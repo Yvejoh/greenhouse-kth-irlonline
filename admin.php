@@ -10,10 +10,10 @@ $service = UserService::get();
 session_start();
 
 try {
-  $service->login($username, $mypassword);
+  $user = $service->login($username, $password);
   // sets two session variables, one for login and one for current username (not sure I'm using that at the moment)
   $_SESSION['userId'] = $user->id();
-  $_SESSION['current_user'] = $myusername;
+  $_SESSION['current_user'] = $username;
   //send on to dashboard
   header("location: dashboard.php");
 } catch (Exception $e) {
