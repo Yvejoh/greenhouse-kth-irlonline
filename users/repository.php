@@ -27,10 +27,10 @@ class UserRepository {
         $stmt = $this->db->prepare($query);
         $stmt->execute([$username]);
         if ($stmt->rowCount() != 0) {
-            $model = $stmt->fetch();
-            return new User($model[UserModel::ID],
-                            $model[UserModel::USERNAME],
-                            $model[UserModel::PASSWORD]);
+            $row = $stmt->fetch();
+            return new User($row[UserModel::ID],
+                            $row[UserModel::USERNAME],
+                            $row[UserModel::PASSWORD]);
         }
         return NULL;
     }

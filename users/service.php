@@ -23,12 +23,11 @@ class UserService {
     }
 
     public function createUser($username, $password) {
-        if ($this->findByUsername($username)) {
-            throw new UnavailableUsernameException("Username already exists");
-        }
+        $this->checkUsername($username);
+        $this->checkPassword($password);
 
         $scaleIds = $this->scaleService->getIds();
-        return $this->repository->create($username,$password, $scaleIds);
+        return $this->repository->create($username,password_hash($password, PASSWORD_BCRYPT), $scaleIds);
     }
 
     public function findByUsername($username) {
@@ -45,24 +44,37 @@ class UserService {
     }
     
     public function updatePassword($username,$password) {
-        $id = $this->db->findByUserName($username);
+        $id = $this->repository->findByUserName($username);
         if ($id == NULL) {
-            throw new UnknownUserException("Invalid username");
+            throw new InvalidUsernameException("Invalid username");
         }
 
-        $this->repository->updatePassword($id, $password);
+        if ($this->checkPassword($password)) {
+            $this->repository->updatePassword($id, password_hash($password, PASSWORD_BCRYPT));
+        }
+    }
+
+
+    private function checkUsername($username) {
+        if ($this->findByUsername($username) != NULL) {
+            throw new InvalidUsernameException("Username already exists");
+        }
+
+        if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
+            throw new InvalidUsernameException("Invalid username format!");
+        }
     }
 
     private function checkPassword($password) {
-        if (strlen($pwd) < 6) {
+        if (strlen($password) < 6) {
             throw new InvalidPasswordException("Password must be at least 6 characters long!");
         }
 
-        if (!preg_match("#[0-9]+#", $pwd)) {
+        if (!preg_match("#[0-9]+#", $password)) {
             throw new InvalidPasswordException("Password must include at least one number!");
         }
 
-        if (!preg_match("#[a-zA-Z]+#", $pwd)) {
+        if (!preg_match("#[a-zA-Z]+#", $password)) {
             throw new InvalidPasswordException("Password must include at least one letter!");
         }   
     }
