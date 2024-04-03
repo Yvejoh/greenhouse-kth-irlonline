@@ -50,7 +50,7 @@ class UserService {
 
 
     private function checkUsername($username) {
-        if ($this->findByUsername($username) != NULL) {
+        if ($this->repository->findByUsername($username) != NULL) {
             throw new InvalidUsernameException("Username already exists");
         }
 
