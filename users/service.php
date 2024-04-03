@@ -36,18 +36,7 @@ class UserService {
             throw new InvalidCredentialsException("Invalid unsername or password!");
         }
     }
-    
-    public function findByUsername($username)  {
-        
-        return $this->repository->findByUsername($username);
-    }
 
-    public function isUserPassword($username, $password) {
-
-
-        return false;
-    }
-    
     public function updatePassword($username,$password) {
         $id = $this->repository->findByUserName($username);
         if ($id == NULL) {
