@@ -8,16 +8,17 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 
 try {
-    $userService->checkPassword($password);
-    $userService->createUser($username, password_hash($password, PASSWORD_BCRYPT));
+    $userService->createUser($username, $password);
     $_SESSION['accountcreated'] = "Account created successfully!";
+    header("location: login.php");
 } catch (InvalidPasswordException $e) {
     $_SESSION['checkPassword'] = $e->getMessage();
-} catch (UnavailableUsernameException $e) {
+    header("location: sign-up.php");
+} catch (InvalidUsernameException $e) {
     $_SESSION['checkPassword'] = $e->getMessage();
+    header("location: sign-up.php");
 } catch (Exception $e) {
     echo "Failed to create user!";
-} finally {
-    header("location: login.php");
+    header("location: sign-up.php");
 }
 ?>

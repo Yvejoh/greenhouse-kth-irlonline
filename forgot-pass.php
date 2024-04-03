@@ -1,6 +1,7 @@
 <?php 
-include "./includes/header.php";
+    include "./includes/header.php";
 ?>
+
 <div class="main-container">
 <div class="card">
     <h3>Change Password</h3>
