@@ -30,15 +30,20 @@ class UserService {
         return $this->repository->create($username,password_hash($password, PASSWORD_BCRYPT), $scaleIds);
     }
 
-    public function findByUsername($username) {
+    public function login($username, $password){
+        $user = $this->repository->findByUsername($username);
+        if ($user == NULL || !password_verify($password, $user->password())) {
+            throw new InvalidCredentialsException("Invalid unsername or password!");
+        }
+    }
+    
+    public function findByUsername($username)  {
+        
         return $this->repository->findByUsername($username);
     }
 
     public function isUserPassword($username, $password) {
-        $user =  $this->repository->findByUsername($username);
-        if ($user != NULL) {
-            return password_verify($user->password(),$password);
-        }
+
 
         return false;
     }
