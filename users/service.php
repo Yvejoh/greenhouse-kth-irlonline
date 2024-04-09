@@ -52,11 +52,7 @@ class UserService {
 
     private function checkUsername($username) {
         if ($this->repository->findByUsername($username) != NULL) {
-<<<<<<< Updated upstream
-            throw new InvalidUsernameException("Username already exists");
-=======
             throw new InvalidCredentialsException("Username already exists");
->>>>>>> Stashed changes
         }
 
         if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
