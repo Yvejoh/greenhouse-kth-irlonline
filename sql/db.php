@@ -1,5 +1,7 @@
 <?php 
 
+class DBException extends Exception{}
+
 class DB  {
     private static $instance;
     private $db;

@@ -41,7 +41,7 @@ class UserService {
     public function updatePassword($username,$password) {
         $id = $this->repository->findByUserName($username);
         if ($id == NULL) {
-            throw new InvalidUsernameException("Invalid username");
+            throw new InvalidCredentialsException("Invalid username");
         }
 
         if ($this->checkPassword($password)) {
@@ -52,25 +52,29 @@ class UserService {
 
     private function checkUsername($username) {
         if ($this->repository->findByUsername($username) != NULL) {
+<<<<<<< Updated upstream
             throw new InvalidUsernameException("Username already exists");
+=======
+            throw new InvalidCredentialsException("Username already exists");
+>>>>>>> Stashed changes
         }
 
         if (!filter_var($username, FILTER_VALIDATE_EMAIL)) {
-            throw new InvalidUsernameException("Invalid username format!");
+            throw new InvalidCredentialsException("Invalid username format!");
         }
     }
 
     private function checkPassword($password) {
         if (strlen($password) < 6) {
-            throw new InvalidPasswordException("Password must be at least 6 characters long!");
+            throw new InvalidCredentialsException("Password must be at least 6 characters long!");
         }
 
         if (!preg_match("#[0-9]+#", $password)) {
-            throw new InvalidPasswordException("Password must include at least one number!");
+            throw new InvalidCredentialsException("Password must include at least one number!");
         }
 
         if (!preg_match("#[a-zA-Z]+#", $password)) {
-            throw new InvalidPasswordException("Password must include at least one letter!");
+            throw new InvalidCredentialsException("Password must include at least one letter!");
         }   
     }
 

@@ -16,11 +16,7 @@ try {
     UserService::get()->updatePassword($username, $newpassword);
     $_SESSION['passwordchanged'] = "Password changed successfully"; 
     header("location: login.php");
-    
-} catch (InvalidUsernameException $e) {
-    $_SESSION['checkPassword'] = $e->getMessage();
-    header("location: forgot-pass.php");
-} catch (InvalidPasswordException $e) {
+} catch (InvalidCredentialsException $e) {
     $_SESSION['checkPassword'] = $e->getMessage();
     header("location: forgot-pass.php");
 }

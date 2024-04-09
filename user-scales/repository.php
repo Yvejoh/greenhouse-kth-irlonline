@@ -51,8 +51,8 @@ class UserScaleRepository {
                             sprintf("%s.%s", UserScaleModel::Table(), UserScaleModel::USER_ID));
 
         $stmt = $this->db->prepare($query);
-        if (!$stmt->execute([$userId])) {
-            throw new Exception((sprintf("Error: unable to find user scales for user %d", $userID, $scaleId)));
+        if (!$stmt->execute([$userId]) || $stmt->rowCount() == 0) {
+            throw new Exception((sprintf("Error: unable to find user scales for user %d", $userID)));
         }        
 
         $rows =  $stmt->fetchAll();
@@ -66,6 +66,45 @@ class UserScaleRepository {
         }
         return $userScales;
     }
+
+    public function getUserScale($userID, $scaleID) {
+        $query = sprintf("SELECT %s, %s, %s, %s FROM %s LEFT JOIN %s ON %s = %s WHERE %s = ? AND %s = ?",
+                            sprintf("%s.%s",ScaleModel::Table(), ScaleModel::ID),
+                            sprintf("%s.%s",ScaleModel::Table(), ScaleModel::TITLE),
+                            sprintf("%s.%s",UserScaleModel::Table(), UserScaleModel::CURRENT_LEVEL),
+                            sprintf("%s.%s",UserScaleModel::Table(), UserScaleModel::PLANNED_LEVEL),
+                            UserScaleModel::Table(),
+                            ScaleModel::Table(),
+                            sprintf("%s.%s", UserScaleModel::Table(), UserScaleModel::SCALE_ID),
+                            sprintf("%s.%s", ScaleModel::Table(), ScaleModel::ID),
+                            sprintf("%s.%s", UserScaleModel::Table(), UserScaleModel::USER_ID),
+                            sprintf("%s.%s", UserScaleModel::Table(), UserScaleModel::SCALE_ID));
+
+        $stmt = $this->db->prepare($query);
+        if (!$stmt->execute([$userID, $scaleID]) || $stmt->rowCount() == 0) {
+            throw new Exception((sprintf("Error: unable to find user scale for user %d and scale %d", $userID, $scaleID)));
+        }         
+
+        $row = $stmt->fetch();
+        return new UserScaleSummary($row[ScaleModel::ID],
+                                    $row[ScaleModel::TITLE],
+                                    $row[UserScaleModel::CURRENT_LEVEL],
+                                    $row[UserScaleModel::PLANNED_LEVEL]);
+    }
+
+    public function updateScaleLevel($userID, $scaleID, $level) {
+        $query = sprintf("UPDATE %s SET %s = ? WHERE %s = ? AND %s = ?",
+                            UserScaleModel::Table(),
+                            UserScaleModel::CURRENT_LEVEL,
+                            UserScaleModel::USER_ID,
+                            UserScaleModel::SCALE_ID);
+        
+        $stmt = $this->db->prepare($query);
+        if (!$stmt->execute([$level,$userID, $scaleID])) {
+            throw new Exception(sprintf("Error: unable to find update scale level for user %d and scale %d", $userID, $scaleID));
+        }        
+    }
+
 }
 
 ?>

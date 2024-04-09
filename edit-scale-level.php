@@ -1,23 +1,21 @@
-<!-- include in session -->
 <?php
+
+require_once("user-scales/service.php");
+
 session_start();
-?>
 
-<!-- connect to database -->
-<?php
-require("dbconnect.php");
-
-// bring in id and level
-$id = $_REQUEST['id'];
-$level = $_REQUEST['level'];
-
-// console log level to check that the correct level is brought in
-function console_log($data) {
-  $consoleOutput = '<script>' . 'console.log(' . json_encode($data, JSON_HEX_TAG) .');'. '</script>';
-    echo $consoleOutput;
+if (!isset($_SESSION['userId'])) { 
+    header("location: login.php");
 }
 
-console_log($level);
+// bring in id and level
+$userID = $_POST['userID'];
+$scaleID = $_POST['scaleID'];
+$scaleLevel = $_POST['scaleLevel'];
+
+UserScaleService::get()->updateScaleLevel($userID, $scaleID, $scaleLevel);
+header("Location: dashboard.php");
+
 
 // updating the colors in the database according to which level is chosen. 
 // controls both the dashboard colors and color of the card on edit scale page to show level reached
@@ -87,9 +85,4 @@ if ($level == 1) {
                   }
                 
 
-?>
-<!-- disconnect from database --> 
-
-<?php
-$conn->close();
 ?>

@@ -17,8 +17,16 @@ class UserScaleService {
         return self::$instance;
     }
 
+    public function updateScaleLevel($userID, $scaleID, $level) {
+        $this->repository->updateScaleLevel($userID, $scaleID, $level);
+    }
+
     public function getUserScales($userID) {
         return $this->repository->getUserScales($userID);
+    }
+
+    public function getUserScale($userID, $scaleID) {
+        return $this->repository->getUserScale($userID, $scaleID);
     }
 }
 

@@ -6,10 +6,6 @@ class ScaleService {
     private static $instance;
     private $repository;
 
-    private function __construct() {
-        $this->repository = ScaleRepository::get();
-    }
-
     public static function get() {
         if (!isset(self::$instance)) {
             self::$instance = new ScaleService();
@@ -17,8 +13,17 @@ class ScaleService {
         return self::$instance;
     }
 
-    public function getAll() {
-        return $this->repository->getAll();
+    private function __construct() {
+        $this->repository = ScaleRepository::get();
+    }
+
+    public function findByID($scaleID) {
+        $scale = $this->repository->findByID($scaleID);
+        if ($scale == NULL) {
+            die("No scale");
+        }
+
+        return $scale;
     }
 
     public function getIds() {

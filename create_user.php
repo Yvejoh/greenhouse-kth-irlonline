@@ -11,10 +11,7 @@ try {
     $userService->createUser($username, $password);
     $_SESSION['accountcreated'] = "Account created successfully!";
     header("location: login.php");
-} catch (InvalidPasswordException $e) {
-    $_SESSION['checkPassword'] = $e->getMessage();
-    header("location: sign-up.php");
-} catch (InvalidUsernameException $e) {
+} catch (InvalidCredentialsException $e) {
     $_SESSION['checkPassword'] = $e->getMessage();
     header("location: sign-up.php");
 } catch (Exception $e) {

@@ -43,9 +43,9 @@ $userScales = UserScaleService::get()->getUserScales($_SESSION['userId']);
                         <h4>
                             <?php echo $userScale->scaleTitle(); ?>
                         </h4>
-                        <form action="edit-scale.php" method="post"> 
+                        <form action="scales.php" method="post"> 
                             <input type="submit" class="button" value="Edit" /> 
-                            <input type="hidden" name="scaleID" value=<?php $userScale->scaleID() ?>>
+                            <input type="hidden" name="scaleID" value=<?php echo $userScale->scaleID(); ?> />
                         </form> 
                     </div>
                         <div class="scales-list card">
