@@ -73,9 +73,6 @@ class UserService {
             throw new InvalidCredentialsException("Password must include at least one letter!");
         }   
     }
-
-
 }
-
 
 ?>
