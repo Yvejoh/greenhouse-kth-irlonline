@@ -11,15 +11,15 @@ class Scale {
         $this->levels = $levels;
     }
 
-    public function getID() {
+    public function ID() {
         return $this->id;
     }
 
-    public function getTitle() {
+    public function title() {
         return $this->title;
     }
 
-    public function getLevels() {
+    public function levels() {
         return $this->levels;
     }
 }
@@ -35,15 +35,15 @@ class ScaleLevel {
         $this->fullDesc = $fullDesc;
     }
 
-    public function getShortDesc() {
+    public function shortDesc() {
         return $this->shortDesc;
     }
 
-    public function getFullDesc() {
+    public function fullDesc() {
         return $this->fullDesc;
     }
 
-    public function getLevel() {
+    public function level() {
         return $this->level;
     }
 }

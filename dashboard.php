@@ -17,7 +17,36 @@ $scaleColors =array(
     6 => "cc3300",
 );
 $scaleLevels = 9;
-$noColor = "f2f2f2";
+
+function colorOf($level, $userLevel) {
+    if ($level > $userLevel) {
+        return "f2f2f2";
+    }
+
+    switch ($level) {
+        case 1:
+            return "ae0f0b";
+        case 2:
+            return "e63312";
+        case 3:
+            return "ec6607";
+        case 4:
+            return "f7b101";
+        case 5:
+            return "ffcc00";
+        case 6:
+            return "aecb54";
+        case 7:
+            return "73b959";
+        case 8:
+            return "008f51";
+        case 9:
+            return "00603b";
+    }
+    return "abcdef";
+}
+
+
 
 $userScales = UserScaleService::get()->getUserScales($_SESSION['userId']);
 
@@ -52,11 +81,9 @@ $userScales = UserScaleService::get()->getUserScales($_SESSION['userId']);
                             <?php for($value = 1; $value <= $scaleLevels; $value++) { ?>
                                 <div 
                                     id=<?php echo "card-".$value; ?> 
-                                    style=<?php if ($value <=  $userScale->currentLevel()) {
-                                        echo "background-color:#".$scaleColors[$userScale->scaleID()];
-                                    } else {
-                                        echo "background-color:#".$noColor;
-                                    } ?>
+                                    style=<?php 
+                                        echo "background-color:#".colorOf($value, $userScale->currentLevel()); 
+                                    ?>
                                 >
                                 <?php echo $value?>
                                 </div>

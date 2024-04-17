@@ -12,16 +12,16 @@ if (!isset($_SESSION['userId'])) {
 $id = $_POST['scaleID'];
 $scaleLevel = $_POST['scaleLevel'];
 $scale = ScaleService::get()->findByID($id);
-$level = $scale->getLevels()[$scaleLevel-1];
+$level = $scale->levels()[$scaleLevel-1];
 ?>
 
 <div class="narrow-container">
     <h4>
-        <?php echo $scale->getTitle(); ?>
+        <?php echo $scale->title(); ?>
     </h4>
     <div class="card">
         <div>
-            <p><?php echo $level->getFullDesc();?></p>
+            <p><?php echo $level->fullDesc();?></p>
             <h4>Do these statements match your current status? Then you are currently at level <?php echo $scaleLevel ?>.</h4>
             <h4>
                 <?php if ($scaleLevel == 1) { ?>
@@ -34,7 +34,7 @@ $level = $scale->getLevels()[$scaleLevel-1];
             </h4>
             <form action="scales.php" method="post">
                 <button class="btn" value="Select">Close</button>
-                <input type="hidden" name="scaleID" value=<?php echo $scale->getID(); ?> />
+                <input type="hidden" name="scaleID" value=<?php echo $scale->ID(); ?> />
             </form>
         </div>
     </div>
